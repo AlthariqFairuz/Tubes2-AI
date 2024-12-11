@@ -60,8 +60,8 @@ class KNNeighbours(BaseEstimator, ClassifierMixin): # Inherit from BaseEstimator
         k_nearest_labels = [self.y_train[i] for i in k_indices]
 
         # Return the most common class label
-        most_common = np.bincount(k_nearest_labels).argmax()
-        return most_common
+        most_common, counts = np.unique(k_nearest_labels, return_counts=True)
+        return most_common[np.argmax(counts)]
     
     def predict(self, X, p=2):
         """
