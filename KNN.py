@@ -6,39 +6,39 @@ class KNNeighbours(BaseEstimator, ClassifierMixin): # Inherit from BaseEstimator
     Create an instance of the K-Nearest Neighbors algorithm
     """
 
-    def __init__(self, k=3, metrics='euclidean'):    
+    def __init__(self, k: int =3, metrics: str = 'euclidean'):    
         """
         Constructor for the K-Nearest Neighbors algorithm
         """
         self.k = k
         self.metrics = metrics
 
-    def fit(self, X, y):
+    def fit(self, X : np.ndarray, y : np.ndarray):
         """
         Fit the training data to the model
         """
         self.X_train = X
         self.y_train = y
 
-    def euclidean_distance(self, x1, x2):
+    def euclidean_distance(self, x1 : np.ndarray, x2 : np.ndarray) -> float:
         """
         Compute the Euclidean distance between two points
         """
         return np.sqrt(np.sum((x1 - x2)**2))
     
-    def manhattan_distance(self, x1, x2):
+    def manhattan_distance(self, x1 : np.ndarray, x2 : np.ndarray) -> float:
         """
         Compute the Manhattan distance between two points
         """
         return np.sum(np.abs(x1 - x2))
     
-    def minkowski_distance(self, x1, x2, p):
+    def minkowski_distance(self, x1 : np.ndarray, x2 : np.ndarray, p : int) -> float    :
         """
         Compute the Minkowski distance between two points
         """
         return np.sum(np.abs(x1 - x2)**p)**(1/p)
 
-    def _predict(self, x, p=2):
+    def _predict(self, x : np.ndarray, p : int = 2) -> int:
         """
         Predict the class label for a single sample
         """
@@ -63,7 +63,7 @@ class KNNeighbours(BaseEstimator, ClassifierMixin): # Inherit from BaseEstimator
         most_common, counts = np.unique(k_nearest_labels, return_counts=True)
         return most_common[np.argmax(counts)]
     
-    def predict(self, X, p=2):
+    def predict(self, X : np.ndarray, p : int = 2) -> np.ndarray:
         """
         Predict the class labels for a set of samples
         """

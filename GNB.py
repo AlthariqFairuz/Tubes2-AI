@@ -6,7 +6,7 @@ class GaussianNaiveBayes(BaseEstimator, ClassifierMixin):
     Create an instance of the Gaussian Naive Bayes algorithm
     """
 
-    def fit(self, X, y):
+    def fit(self, X : np.ndarray, y : np.ndarray):
         """
         Fit the training data to the model, calculate the mean, variance, and prior for each class
         """
@@ -28,7 +28,7 @@ class GaussianNaiveBayes(BaseEstimator, ClassifierMixin):
             self.priors[cls] = X_c.shape[0] / X.shape[0]
 
     # Calculate the probability of a feature vector x in a given class
-    def _pdf(self, cls, x):
+    def _pdf(self, cls : int, x : np.ndarray) -> float:
         """
         Calculate the probability of a feature vector x in a given class
         """
@@ -42,7 +42,7 @@ class GaussianNaiveBayes(BaseEstimator, ClassifierMixin):
         
         return numerator / denominator
 
-    def predict_instance(self, x):
+    def predict_instance(self, x : np.ndarray) -> int:
         """
         Predict the class label for a single sample
         """
@@ -65,7 +65,7 @@ class GaussianNaiveBayes(BaseEstimator, ClassifierMixin):
 
         return self.classes[np.argmax(posteriors)]
 
-    def predict(self, X):
+    def predict(self, X : np.ndarray) -> np.ndarray:
         """
         Predict the class label for all of the samples
         """

@@ -6,7 +6,7 @@ class Node:
     Create a node for the Decision Tree
     """
     
-    def __init__(self, feature_index= None, threshold= None, left= None, right= None, info_gain= None, value= None):
+    def __init__(self, feature_index: int = None, threshold: float = None, left: 'Node' = None, right: 'Node' = None, info_gain: float = None, value: int = None):
         """
         Constructor for the Node class
         """
@@ -21,7 +21,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
     """
     Create an instance of the Decision Tree algorithm
     """
-    def __init__(self, min_samples_split= 4, max_depth= 4, mode= "gini"):
+    def __init__(self, min_samples_split: int = 4, max_depth: int = 4, mode: str = "gini"):
         """
         Constructor for the Decision Tree model
         """
@@ -30,7 +30,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
         self.root = None
         self.mode= mode
 
-    def split(self, dataset, feature_index, threshold):     
+    def split(self, dataset: np.ndarray, feature_index: int, threshold: float) -> tuple[np.ndarray, np.ndarray]:     
         """
         Split the dataset into two parts based on the feature and threshold
         """
@@ -38,7 +38,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
         dataset_right= np.array([row for row in dataset if row[feature_index] > threshold])
         return dataset_left, dataset_right
     
-    def entropy(self, y):
+    def entropy(self, y: np.ndarray) -> float:
         """
         Calculate the entropy of the dataset
         """
@@ -50,7 +50,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
 
         return entropy
     
-    def gini_index(self, y): 
+    def gini_index(self, y: np.ndarray) -> float: 
         """
         Calculate the Gini index of a tree node
         """   
@@ -62,14 +62,14 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
 
         return gini
     
-    def calculate_leaf_value(self, y): 
+    def calculate_leaf_value(self, y: np.ndarray) -> int: 
         """
         Calculate the leaf node value
         """ 
         Y= list(y)
         return max(Y, key= Y.count)
         
-    def information_gain(self, parent_node, left_child, right_child, mode= "gini"):
+    def information_gain(self, parent_node: np.ndarray, left_child: np.ndarray, right_child: np.ndarray, mode: str = "gini") -> float:
         """
         Calculate the information gain of a split
         """
@@ -84,7 +84,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
         
         return gain
 
-    def get_best_split(self, dataset, num_features):
+    def get_best_split(self, dataset: np.ndarray, num_features: int) -> dict:
         """
         Find the best split for the dataset based on the information gain
         """
@@ -113,7 +113,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
 
         return best_split
 
-    def construct_tree(self, dataset, current_depth= 0):
+    def construct_tree(self, dataset: np.ndarray, current_depth: int = 0) -> 'Node':
         """
         Construct the decision tree recursively
         """
@@ -148,7 +148,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
     #         print(f"{indent}right: ", end= "")
     #         self.print(tree.right, indent + indent)
 
-    def fit(self, X, Y):
+    def fit(self, X: np.ndarray, Y: np.ndarray):
         """
         Fit the training data to the model
         """
@@ -156,7 +156,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
         dataset= np.concatenate((X, Y), axis= 1)
         self.root= self.construct_tree(dataset)
 
-    def _predict(self, x, tree):
+    def _predict(self, x: np.ndarray, tree: 'Node') -> int:
         """
         Predict the class label for a single sample
         """
@@ -171,7 +171,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
         else:
             return self._predict(x, tree.right)
 
-    def predict(self, X):
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the class labels for a set of samples
         """
