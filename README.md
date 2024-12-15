@@ -15,7 +15,7 @@ Repositori ini berisi implementasi _from scratch_ dari beberapa model yang ada p
 
 Berikut adalah model yang diimplementasikan pada repositori beriikut: 
 
-**Supervised Learning (Bagian 2):**
+**Supervised Learning:**
 - [v] KNN
 - [v] Gaussian Naive Bayes
 - [v] ID3
