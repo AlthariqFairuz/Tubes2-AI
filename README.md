@@ -20,3 +20,5 @@ Berikut adalah model yang diimplementasikan pada repositori beriikut:
 - [v] KNN
 - [v] Gaussian Naive Bayes
 - [v] ID3
+
+```Note:``` Pengujian model yang dibuat dari _scratch_ dilakukan dengan menggunakan sebagian data dari dataset saja dengan tujuan untuk mengurangi kompleksitas dan waktu eksekusi yang diperlukan.
