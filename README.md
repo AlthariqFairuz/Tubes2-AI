@@ -1,7 +1,7 @@
 # Tubes2-AI
 
 ## Deskripsi Singkat
-Repositori ini berisi implementasi _from scratch_ dari beberapa model yang ada pada library scikit-learn. 
+Repositori ini berisi implementasi _from scratch_ dari beberapa model yang ada pada library scikit-learn dan analisis terhadap dataset UNSW-NB15, yaitu dataset yang berisi raw network packets yang dibuat menggunakan IXIA PerfectStorm oleh Cyber Range Lab UNSW Canberra. Dataset ini terdiri dari 10 jenis aktivitas (9 jenis attack dan 1 aktivitas normal). Sembilan jenis attack yang termasuk ke dalam dataset ini adalah Fuzzers, Analysis, Backdoors, DoS, Exploits, Generic, Reconnaissance, Shellcode dan Worms.
 
 
 ## Cara penggunaan
