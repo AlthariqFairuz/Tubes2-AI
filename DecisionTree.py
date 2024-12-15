@@ -21,7 +21,7 @@ class DecisionTree(BaseEstimator, ClassifierMixin):
     """
     Create an instance of the Decision Tree algorithm
     """
-    def __init__(self, min_samples_split: int = 4, max_depth: int = 4, mode: str = "gini"):
+    def __init__(self, min_samples_split: int = 4, max_depth: int = 4, mode: str = "entropy"):
         """
         Constructor for the Decision Tree model
         """
